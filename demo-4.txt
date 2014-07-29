@@ -1,0 +1,38 @@
+*** Settings ***
+Library    Selenium2Library
+Test Teardown    Close Browser
+
+
+*** Variables ***
+
+
+*** Testcases ***
+Invalid login
+	[Template]    Validate login system
+	#    Username    |    Password    #
+	     invalid          mode
+	     demo             invalid
+	     invalid          invalid
+	     ${EMPTY}         ${EMPTY}
+
+*** Keywords ***
+Validate login system
+	[Arguments]    ${username}    ${password}
+	ไปที่หน้าlogin
+	กรอกข้อมูลผู้ใช้งาน    ${username}    ${password}
+	loginไม่สำเร็จนะ
+	Close Browser
+
+ไปที่หน้าlogin
+	Open Browser    http://localhost:7272/html/
+
+กรอกข้อมูลผู้ใช้งาน
+	[Arguments]    ${username}    ${password}
+	Input Text    username_field    ${username}
+	Input Text    password_field    ${password}
+	Click Button    login_button
+
+loginไม่สำเร็จนะ
+	Title Should Be    Error Page
+	Wait Until Page Contains    Login failed
+

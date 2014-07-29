@@ -1,0 +1,17 @@
+*** Settings ***
+Library    Selenium2Library
+
+
+*** Variables ***
+
+
+*** Testcases ***
+Log in to Facebook
+	Open Browser    http://www.facebook.com
+	Input Text    email    fai.mama.p@gmail.com
+	Input Text    pass    Punjasri1180
+	Click Button    เข้าสู่ระบบ
+	Wait Until Page Contains    Choco
+	
+
+*** Keywords ***
